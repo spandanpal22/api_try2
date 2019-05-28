@@ -14,6 +14,7 @@ router.register('users', views.StockList)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('stocks/', views.StockList.as_view()),
+    path('stocks/<int:pk>', views.StockList.as_view()),
     path('stock/', views.stock_detail),
     path('stock/<int:pk>', views.stock_detail),
     # path('stocks/', include('rest_framework.urls', namespace='rest_framework')),

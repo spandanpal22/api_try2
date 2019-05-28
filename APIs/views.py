@@ -24,8 +24,9 @@ class StockList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def put(self, request):
-        serializer = StockSerializer(APIs, data=request.data)
+    def put(self, request,pk):
+        saved_stock = get_object_or_404(Stock.objects.all(), pk=pk)
+        serializer = StockSerializer(saved_stock, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
